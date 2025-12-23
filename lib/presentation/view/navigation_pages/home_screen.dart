@@ -1,17 +1,23 @@
 import 'package:code_note/const/dimens.dart';
+import 'package:code_note/core/controllers/category_controller.dart';
 import 'package:code_note/core/helpers/get_now_shamsi_date.dart';
 import 'package:code_note/presentation/widgets/home_big_banner.dart';
+import 'package:code_note/presentation/widgets/home_category_card.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
 
     var textTheme = Theme.of(context).textTheme;
 
     var size = MediaQuery.of(context).size;
+
+    final defaultCategories = ref.watch(categoryControllerProvider);
 
     return Padding(
       padding: EdgeInsets.all(Dimens.mainScaffoldPadding(context)),
@@ -46,13 +52,40 @@ class HomeScreen extends StatelessWidget {
 
           const SizedBox(height: 30),
 
+          // Big Banner
           SizedBox(
             height: size.height * .16,
             width: size.width,
             child: HomeBigBanner(),
-          )
+          ),
+
+          const SizedBox(height: 50),
+
+          // Default Categories : Row 1
+          Expanded(
+            child: GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: 20,
+                crossAxisSpacing: 20
+              ),
+              itemCount: defaultCategories.length,
+              itemBuilder: (context, index) {
+
+                final category = defaultCategories[index];
+
+                return HomeDefaultCategoryCard(
+                  icon: category.icon,
+                  title: category.name, 
+                  subtitle: '${category.noteCount} یادداشت',
+                );
+                
+              },
+            )
+          ),
         ],
       ),
     );
   }
 }
+

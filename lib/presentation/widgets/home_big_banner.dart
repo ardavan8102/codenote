@@ -23,9 +23,9 @@ class HomeBigBanner extends StatelessWidget {
         Positioned(
           left: size.width * .16,
           right: size.width * .16,
-          bottom: -40,
+          bottom: -28,
           child: HomeBigBannerContainer(
-            bgColor: AppSolidColors.primary.withValues(alpha: .25),
+            bgColor: AppSolidColors.primary.withValues(alpha: .1),
             useShadow: false,
             child: const SizedBox.shrink(),
           ),
@@ -35,9 +35,9 @@ class HomeBigBanner extends StatelessWidget {
         Positioned(
           left: size.width * .08,
           right: size.width * .08,
-          bottom: -20,
+          bottom: -15,
           child: HomeBigBannerContainer(
-            bgColor: AppSolidColors.primary.withValues(alpha: .5),
+            bgColor: AppSolidColors.primary.withValues(alpha: .4),
             useShadow: false,
             child: const SizedBox.shrink(),
           ),
