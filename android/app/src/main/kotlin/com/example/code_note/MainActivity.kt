@@ -1,4 +1,4 @@
-package com.example.code_note
+package com.codenote.app
 
 import io.flutter.embedding.android.FlutterActivity
 
