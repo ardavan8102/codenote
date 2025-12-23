@@ -20,9 +20,9 @@ class AppSolidColors {
 class AppGradientColors {
 
   static const waterColors = [
-    Color(0xFF7AD9FF),
-    Color(0xFF42A5F5),
-    Color(0xFF0D47A1),
+    Color(0xFFBEB9DD),
+    Color.fromARGB(255, 136, 119, 216),
+    Color(0xFF6B4EFF),
   ];
 
 

@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:code_note/const/colors.dart';
 import 'package:code_note/core/models/splash_bubble.dart';
 import 'package:code_note/gen/assets.gen.dart';
 import 'package:code_note/page_handler.dart';
@@ -88,7 +89,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
     var textTheme = Theme.of(context).textTheme;
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppSolidColors.scaffoldBackground,
       body: Stack(
         alignment: Alignment.center,
         children: [

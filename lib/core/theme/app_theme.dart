@@ -18,10 +18,28 @@ class AppTheme {
       ),
 
 
+      // Titles
+      titleLarge: TextStyle(
+        fontSize: 24,
+        fontWeight: .w700,
+      ),
+
+
       // Bodies
       bodyMedium: TextStyle(
         fontSize: 18,
         fontWeight: FontWeight.w500
+      ),
+
+
+      // Labels
+      labelMedium: TextStyle(
+        fontSize: 16,
+        fontWeight: .w400
+      ),
+      labelSmall: TextStyle(
+        fontSize: 14,
+        fontWeight: .w300
       )
 
     ),

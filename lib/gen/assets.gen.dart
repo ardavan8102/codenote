@@ -26,6 +26,19 @@ class $AssetsBrandGen {
   List<AssetGenImage> get values => [codenoteLogo, logoTransparent];
 }
 
+class $AssetsImgGen {
+  const $AssetsImgGen();
+
+  /// File path: assets/img/card_bg.png
+  AssetGenImage get cardBg => const AssetGenImage('assets/img/card_bg.png');
+
+  /// File path: assets/img/notepad.png
+  AssetGenImage get notepad => const AssetGenImage('assets/img/notepad.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [cardBg, notepad];
+}
+
 class $AssetsSvgGen {
   const $AssetsSvgGen();
 
@@ -49,6 +62,7 @@ class Assets {
   const Assets._();
 
   static const $AssetsBrandGen brand = $AssetsBrandGen();
+  static const $AssetsImgGen img = $AssetsImgGen();
   static const $AssetsSvgGen svg = $AssetsSvgGen();
 }
 
