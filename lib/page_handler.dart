@@ -36,6 +36,7 @@ class PageHandlerScreen extends ConsumerWidget {
 
     return Scaffold(
       backgroundColor: AppSolidColors.scaffoldBackground,
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: SizedBox(
           height: size.height,

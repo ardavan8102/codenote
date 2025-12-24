@@ -1,8 +1,6 @@
 import 'package:code_note/const/colors.dart';
 import 'package:code_note/const/dimens.dart';
 import 'package:code_note/core/controllers/note_controller.dart';
-import 'package:code_note/core/helpers/language_extention.dart';
-import 'package:code_note/core/models/hive/note_model.dart';
 import 'package:code_note/presentation/widgets/containers/notes_grid_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
