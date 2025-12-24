@@ -6,7 +6,7 @@ class AddNewNotePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text('Add'),
+      child: Text('Add', style: TextStyle(color: Colors.white)),
     );
   }
 }

@@ -3,7 +3,6 @@ import 'package:code_note/core/controllers/category_controller.dart';
 import 'package:code_note/core/helpers/get_now_shamsi_date.dart';
 import 'package:code_note/presentation/widgets/home_big_banner.dart';
 import 'package:code_note/presentation/widgets/home_category_card.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
