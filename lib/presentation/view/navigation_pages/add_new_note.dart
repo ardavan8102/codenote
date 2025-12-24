@@ -177,7 +177,7 @@ class _AddNewNotePageState extends ConsumerState<AddNewNotePage> {
   Container topAppBar(Size size, TextTheme textTheme) {
     return Container(
       height: size.height * .09,
-      padding: const EdgeInsets.all(12),
+      padding: const EdgeInsets.fromLTRB(12, 12, 20, 12),
       decoration: BoxDecoration(
         color: AppSolidColors.sectionDarkBackground,
         borderRadius: BorderRadius.circular(18),
