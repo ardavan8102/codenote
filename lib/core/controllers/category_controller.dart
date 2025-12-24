@@ -14,7 +14,7 @@ class CategoryController extends StateNotifier<List<NoteCategoryModel>> {
   static final List<NoteCategoryModel> _defaultCategories = [
     NoteCategoryModel(
       id: 1,
-      name: 'کد هایلایت',
+      name: 'کد نویسی',
       icon: Icons.code,
       noteCount: 103
     ),

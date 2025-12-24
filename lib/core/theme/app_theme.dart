@@ -24,6 +24,16 @@ class AppTheme {
         fontWeight: .w700,
       ),
 
+      titleMedium: TextStyle(
+        fontSize: 22,
+        fontWeight: .w700,
+      ),
+      
+      titleSmall: TextStyle(
+        fontSize: 20,
+        fontWeight: .w600,
+      ),
+
 
       // Bodies
       bodyMedium: TextStyle(
@@ -33,6 +43,10 @@ class AppTheme {
 
 
       // Labels
+      labelLarge: TextStyle(
+        fontSize: 18,
+        fontWeight: .w500
+      ),
       labelMedium: TextStyle(
         fontSize: 16,
         fontWeight: .w400

@@ -48,9 +48,6 @@ enum NoteLanguage {
   css,
   
   @HiveField(14)
-  markdown,
-  
-  @HiveField(15)
   plainText,
 }
 
@@ -73,7 +70,7 @@ class NoteModel extends HiveObject {
   int type;
 
   @HiveField(4)
-  String categoryId;
+  int categoryId;
 
   @HiveField(5)
   List<String> tags;

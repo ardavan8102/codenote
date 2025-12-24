@@ -39,6 +39,45 @@ class $AssetsImgGen {
   List<AssetGenImage> get values => [cardBg, notepad];
 }
 
+class $AssetsLanguagesGen {
+
+  const $AssetsLanguagesGen();
+
+  String get cpp => 'assets/languages/c++.png';
+
+  String get css => 'assets/languages/css.png';
+
+  String get dart => 'assets/languages/dart.png';
+
+  String get go => 'assets/languages/go.png';
+
+  String get html => 'assets/languages/html.png';
+
+  String get java => 'assets/languages/java.png';
+
+  String get js => 'assets/languages/js.png';
+
+  String get kotlin => 'assets/languages/kotlin.png';
+
+  String get php => 'assets/languages/php.png';
+
+  String get python => 'assets/languages/python.png';
+
+  String get ruby => 'assets/languages/ruby.png';
+
+  String get rust => 'assets/languages/rust.png';
+
+  String get sql => 'assets/languages/sql.png';
+
+  String get swift => 'assets/languages/swift.png';
+
+  String get text => 'assets/languages/text.png';
+
+
+  List<String> get values => [cpp, css, dart, go, html, java, js, kotlin, php, python, ruby, sql, swift, text, rust];
+
+}
+
 class $AssetsSvgGen {
   const $AssetsSvgGen();
 
@@ -64,6 +103,7 @@ class Assets {
   static const $AssetsBrandGen brand = $AssetsBrandGen();
   static const $AssetsImgGen img = $AssetsImgGen();
   static const $AssetsSvgGen svg = $AssetsSvgGen();
+  static const $AssetsLanguagesGen language = $AssetsLanguagesGen();
 }
 
 class AssetGenImage {

@@ -21,6 +21,7 @@ dependencies:
   path_provider: ^2.1.5
   riverpod: ^3.0.3
   shamsi_date: ^1.1.1
+  uuid: ^4.5.2
 
 dev_dependencies:
   build_runner: ^2.4.6
@@ -39,6 +40,22 @@ flutter:
     - assets/brand/logo_transparent.png
     - assets/img/card_bg.png
     - assets/img/notepad.png
+
+    - assets/languages/c++.png
+    - assets/languages/css.png
+    - assets/languages/dart.png
+    - assets/languages/go.png
+    - assets/languages/html.png
+    - assets/languages/java.png
+    - assets/languages/js.png
+    - assets/languages/kotlin.png
+    - assets/languages/php.png
+    - assets/languages/python.png
+    - assets/languages/ruby.png
+    - assets/languages/rust.png
+    - assets/languages/sql.png
+    - assets/languages/swift.png
+    - assets/languages/text.png
 
     - assets/svg/notes.svg
     - assets/svg/settings.svg

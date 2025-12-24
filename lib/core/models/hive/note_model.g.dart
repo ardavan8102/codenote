@@ -21,7 +21,7 @@ class NoteModelAdapter extends TypeAdapter<NoteModel> {
       title: fields[1] as String,
       content: fields[2] as String,
       type: fields[3] as int,
-      categoryId: fields[4] as String,
+      categoryId: fields[4] as int,
       tags: (fields[5] as List).cast<String>(),
       isPinned: fields[6] as bool,
       isArchived: fields[7] as bool,
@@ -106,8 +106,6 @@ class NoteLanguageAdapter extends TypeAdapter<NoteLanguage> {
       case 13:
         return NoteLanguage.css;
       case 14:
-        return NoteLanguage.markdown;
-      case 15:
         return NoteLanguage.plainText;
       default:
         return NoteLanguage.dart;
@@ -159,11 +157,8 @@ class NoteLanguageAdapter extends TypeAdapter<NoteLanguage> {
       case NoteLanguage.css:
         writer.writeByte(13);
         break;
-      case NoteLanguage.markdown:
-        writer.writeByte(14);
-        break;
       case NoteLanguage.plainText:
-        writer.writeByte(15);
+        writer.writeByte(14);
         break;
     }
   }

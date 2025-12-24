@@ -12,7 +12,8 @@ class AppSolidColors {
 
   // Backgrounds
   static const Color scaffoldBackground = Color(0xff0d1116);
-  static const Color bottomNavigationBarBackground = Color.fromARGB(255, 41, 41, 41);
+  static const Color sectionDarkBackground = Color.fromARGB(255, 41, 41, 41);
+  static const Color darkPurpleBackground = Color.fromARGB(255, 42, 30, 100);
 
 }
 

@@ -39,7 +39,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
             width: size.width,
             height: size.height * .1,
             decoration: BoxDecoration(
-              color: AppSolidColors.bottomNavigationBarBackground,
+              color: AppSolidColors.sectionDarkBackground,
               borderRadius: .circular(16),
             ),
           ),
