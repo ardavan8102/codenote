@@ -90,12 +90,16 @@ class NoteModel extends HiveObject {
   @HiveField(10)
   NoteLanguage language;
 
+  @HiveField(11)
+  String codeContent;
+
   
 
   NoteModel({
     required this.id,
     required this.title,
     required this.content,
+    required this.codeContent,
     required this.type,
     required this.categoryId,
     this.tags = const [],

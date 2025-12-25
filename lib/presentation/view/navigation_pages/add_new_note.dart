@@ -8,7 +8,24 @@ import 'package:code_note/core/models/category_model.dart';
 import 'package:code_note/core/models/hive/note_model.dart';
 import 'package:code_note/presentation/widgets/dropdowns/choose_lang_dropdown.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_code_editor/flutter_code_editor.dart';
+import 'package:flutter_highlight/themes/atom-one-dark.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:highlight/languages/cpp.dart';
+import 'package:highlight/languages/css.dart';
+import 'package:highlight/languages/dart.dart';
+import 'package:highlight/languages/go.dart';
+import 'package:highlight/languages/htmlbars.dart';
+import 'package:highlight/languages/java.dart';
+import 'package:highlight/languages/javascript.dart';
+import 'package:highlight/languages/kotlin.dart';
+import 'package:highlight/languages/php.dart';
+import 'package:highlight/languages/plaintext.dart';
+import 'package:highlight/languages/python.dart';
+import 'package:highlight/languages/ruby.dart';
+import 'package:highlight/languages/rust.dart';
+import 'package:highlight/languages/sql.dart';
+import 'package:highlight/languages/swift.dart';
 import 'package:uuid/uuid.dart';
 
 class AddNewNotePage extends ConsumerStatefulWidget {
@@ -21,7 +38,16 @@ class AddNewNotePage extends ConsumerStatefulWidget {
 class _AddNewNotePageState extends ConsumerState<AddNewNotePage> {
 
   late final TextEditingController _titleController;
+
   late final TextEditingController _contentController;
+
+  late final CodeController _codeController;
+
+  final _scrollController = ScrollController();
+
+  final _contentFocus = FocusNode();
+
+  final _codeFocus = FocusNode();
 
   NoteLanguage _selectedLanguage = NoteLanguage.plainText; // --> Default value
   
@@ -37,6 +63,22 @@ class _AddNewNotePageState extends ConsumerState<AddNewNotePage> {
 
     _contentController = TextEditingController();
 
+    _codeController = CodeController(
+      text: '',
+      language: plaintext,
+    );
+
+    _contentFocus.addListener(
+      () {
+        if (_contentFocus.hasFocus) _scrollToFocused();
+      }
+    );
+
+    _codeFocus.addListener(
+      () {
+        if (_codeFocus.hasFocus) _scrollToFocused();
+      }
+    );
   }
 
   @override
@@ -44,6 +86,8 @@ class _AddNewNotePageState extends ConsumerState<AddNewNotePage> {
     _titleController.dispose();
 
     _contentController.dispose();
+
+    _codeController.dispose();
 
     super.dispose();
   }
@@ -56,10 +100,18 @@ class _AddNewNotePageState extends ConsumerState<AddNewNotePage> {
     final size = MediaQuery.of(context).size;
 
     final textTheme = Theme.of(context).textTheme;
+    
+    final bottomInset = MediaQuery.of(context).viewInsets.bottom;
 
     return Padding(
-      padding: EdgeInsets.all(Dimens.mainScaffoldPadding(context)),
+      padding: EdgeInsets.only(
+        top: Dimens.mainScaffoldPadding(context),
+        left: Dimens.mainScaffoldPadding(context),
+        right: Dimens.mainScaffoldPadding(context),
+        bottom: bottomInset
+      ),
       child: SingleChildScrollView(
+        controller: _scrollController,
         child: Column(
           children: [
             // appbar
@@ -103,6 +155,23 @@ class _AddNewNotePageState extends ConsumerState<AddNewNotePage> {
                             if (value == null) return;
                             setState(() {
                               _selectedLanguage = value;
+                              _codeController.language = switch (value) {
+                                NoteLanguage.dart => dart,
+                                NoteLanguage.cpp => cpp,
+                                NoteLanguage.javascript => javascript,
+                                NoteLanguage.python => python,
+                                NoteLanguage.java => java,
+                                NoteLanguage.swift => swift,
+                                NoteLanguage.kotlin => kotlin,
+                                NoteLanguage.php => php,
+                                NoteLanguage.ruby => ruby,
+                                NoteLanguage.go => go,
+                                NoteLanguage.rust => rust,
+                                NoteLanguage.sql => sql,
+                                NoteLanguage.html => htmlbars,
+                                NoteLanguage.css => css,
+                                NoteLanguage.plainText => plaintext,
+                              };
                             });
                           },
                         ),
@@ -143,8 +212,10 @@ class _AddNewNotePageState extends ConsumerState<AddNewNotePage> {
                     borderRadius: BorderRadius.circular(12)
                   ),
                   child: TextFormField(
+                    focusNode: _contentFocus,
                     controller: _contentController,
                     maxLines: null,
+                    minLines: 1,
                     keyboardType: .multiline,
                     textAlignVertical: .top,
                     style: textTheme.bodyMedium!.copyWith(
@@ -162,10 +233,64 @@ class _AddNewNotePageState extends ConsumerState<AddNewNotePage> {
                     ),
                   ),
                 ),
+
+
+                const SizedBox(height: 20),
+
+                // code editor
+                codeEditor(textTheme),
               ],
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget codeEditor(TextTheme textTheme) {
+    return Container(
+      decoration: BoxDecoration(
+        color: AppSolidColors.sectionDarkBackground,
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(color: Colors.grey.shade700),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // title
+          Padding(
+            padding: const EdgeInsets.only(top: 12, right: 12),
+            child: Text(
+              'یادداشت کُد',
+              style: textTheme.labelSmall!.copyWith(
+                color: Colors.grey.shade400,
+              ),
+            ),
+          ),
+
+          const SizedBox(height: 8),
+
+          // editor
+          Directionality(
+            textDirection: .ltr,
+            child: CodeTheme(
+              data: CodeThemeData(styles: atomOneDarkTheme),
+              child: CodeField(
+                focusNode: _codeFocus,
+                controller: _codeController,
+                textStyle: textTheme.bodySmall!.copyWith(
+                  fontFamily: 'JetBrainsMono',
+                  fontSize: 14,
+                  color: Colors.white
+                ),
+                expands: false,
+                minLines: 4,
+                maxLines: null,
+                background: Colors.transparent,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -378,6 +503,19 @@ class _AddNewNotePageState extends ConsumerState<AddNewNotePage> {
     );
   }
 
+  // scroll manager for text fields
+  void _scrollToFocused() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!_scrollController.hasClients) return;
+
+      _scrollController.animateTo(
+        _scrollController.position.maxScrollExtent,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeOut,
+      );
+    });
+  }
+
   // save note
   void _saveNote() {
 
@@ -386,6 +524,7 @@ class _AddNewNotePageState extends ConsumerState<AddNewNotePage> {
         id: const Uuid().v4(),
         title: _titleController.text.trim(),
         content: _contentController.text,
+        codeContent: _codeController.text,
         type: _selectedNoteType.index,
         categoryId: _selectedCategoryId ?? 2,
         createdAt: DateTime.now(),
@@ -402,6 +541,7 @@ class _AddNewNotePageState extends ConsumerState<AddNewNotePage> {
     setState(() {
       _titleController.value = TextEditingValue.empty;
       _contentController.value = TextEditingValue.empty;
+      _codeController.text = '';
 
       _selectedLanguage = NoteLanguage.plainText;
       _selectedNoteType = NoteType.note;
