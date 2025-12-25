@@ -60,7 +60,7 @@ class HomeScreen extends ConsumerWidget {
 
           const SizedBox(height: 50),
 
-          // Default Categories : Row 1
+          // Default Categories
           Expanded(
             child: GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -72,11 +72,13 @@ class HomeScreen extends ConsumerWidget {
               itemBuilder: (context, index) {
 
                 final category = defaultCategories[index];
+                
+                final noteCount = ref.watch(categoryNoteCountProvider(category.id));
 
                 return HomeDefaultCategoryCard(
                   icon: category.icon,
                   title: category.name, 
-                  subtitle: '${category.noteCount} یادداشت',
+                  subtitle: '$noteCount یادداشت',
                 );
                 
               },

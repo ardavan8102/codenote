@@ -1,13 +1,24 @@
-// lib/features/notes/controllers/category_controller.dart
+import 'package:code_note/core/controllers/note_controller.dart';
 import 'package:code_note/core/models/category_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
 
 final categoryControllerProvider = StateNotifierProvider<CategoryController, List<NoteCategoryModel>>(
   (ref) => CategoryController(),
 );
 
+final categoryNoteCountProvider = Provider.family<int, int>((ref, categoryId) {
+  final notesAsync = ref.watch(notesControllerProvider);
+
+  return notesAsync.when(
+    data: (notes) =>
+        notes.where((note) => note.categoryId == categoryId).length,
+    loading: () => 0,
+    error: (_, _) => 0,
+  );
+});
 class CategoryController extends StateNotifier<List<NoteCategoryModel>> {
   CategoryController() : super(_defaultCategories);
 

@@ -67,9 +67,15 @@ class SingleNotePage extends ConsumerWidget {
                   child: Column(
                     children: [
                       // Code view
-                      CodeHightlightViewer(note: note),
-                  
-                      const SizedBox(height: 30),
+                      note.codeContent == ''
+                        ? SizedBox.shrink()
+                        : Column(
+                          children: [
+                            CodeHightlightViewer(note: note),
+                            
+                            const SizedBox(height: 30),
+                          ],
+                        ),
                   
                       Container(
                         width: size.width,

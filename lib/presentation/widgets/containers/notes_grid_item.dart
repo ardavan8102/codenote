@@ -25,7 +25,7 @@ class NotesGridViewItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(15),
       ),
       child: Column(
-        mainAxisAlignment: .center,
+        mainAxisAlignment: .spaceBetween,
         crossAxisAlignment: .start,
         children: [
           Text(
@@ -37,7 +37,7 @@ class NotesGridViewItem extends StatelessWidget {
             overflow: .ellipsis,
           ),
     
-          const SizedBox(height: 10),
+          const SizedBox(height: 4),
     
           Text(
             note.content,

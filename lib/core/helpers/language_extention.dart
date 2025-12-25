@@ -68,7 +68,7 @@ extension NoteLanguageExtension on NoteLanguage {
       case NoteLanguage.css:
         return 'سی اس اس';
       case NoteLanguage.plainText:
-        return 'یادداشت معمولی';
+        return 'تکست';
     }
   }
   

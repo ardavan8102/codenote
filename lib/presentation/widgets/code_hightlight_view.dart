@@ -31,7 +31,9 @@ class _CodeHightlightViewerState extends State<CodeHightlightViewer> {
         SizedBox(
           width: size.width,
           child: Directionality(
-            textDirection: .ltr,
+            textDirection: NoteType.values[widget.note.type] == NoteType.note
+              ? .rtl
+              : .ltr,
             child: ClipRRect(
               borderRadius: .circular(15),
               child: HighlightView(
@@ -52,7 +54,12 @@ class _CodeHightlightViewerState extends State<CodeHightlightViewer> {
         // copy icon
         Positioned(
           top: 15,
-          right: 15,
+          right: NoteType.values[widget.note.type] == NoteType.note
+            ? null
+            : 15,
+          left: NoteType.values[widget.note.type] == NoteType.note
+            ? 15
+            : null,
           child: GestureDetector(
             onTap: () async {
               setState(() {
