@@ -1,7 +1,9 @@
-import 'package:code_note/const/colors.dart';
 import 'package:code_note/const/dimens.dart';
 import 'package:code_note/core/controllers/note_controller.dart';
+import 'package:code_note/presentation/view/single_pages/single_note_page.dart';
+import 'package:code_note/presentation/widgets/appbars/just_text_appbar.dart';
 import 'package:code_note/presentation/widgets/containers/notes_grid_item.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -38,7 +40,7 @@ class NotesPage extends ConsumerWidget {
             children: [
               
               // appbar
-              topAppBar(size, textTheme),
+              TopAppBarJustText(title: 'یادداشت ها'),
 
               const SizedBox(height: 30),
 
@@ -55,7 +57,18 @@ class NotesPage extends ConsumerWidget {
                     
                     final note = notes[index];
 
-                    return NotesGridViewItem(size: size, note: note, textTheme: textTheme);
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(
+                          CupertinoPageRoute(builder: (_) => SingleNotePage(note: note))
+                        );
+                      },
+                      child: NotesGridViewItem(
+                        size: size,
+                        note: note,
+                        textTheme: textTheme
+                      )
+                    );
                   },
                 ),
               ),
@@ -63,23 +76,6 @@ class NotesPage extends ConsumerWidget {
           ),
         );
       },
-    );
-  }
-
-  Container topAppBar(Size size, TextTheme textTheme) {
-    return Container(
-      height: size.height * .08,
-      width: size.width,
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: AppSolidColors.sectionDarkBackground,
-        borderRadius: BorderRadius.circular(12),
-      ),
-      alignment: .center,
-      child: Text(
-        'یادداشت ها',
-        style: textTheme.titleSmall!.copyWith(color: Colors.white),
-      ),
     );
   }
 }

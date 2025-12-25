@@ -54,6 +54,10 @@ class CategoryController extends StateNotifier<List<NoteCategoryModel>> {
   }
 
   NoteCategoryModel? getCategoryById(int id) {
-    return state.firstWhere((category) => category.id == id);
+    try {
+      return state.firstWhere((category) => category.id == id);
+    } catch (_) {
+      return null;
+    }
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class HomeBigBannerContainer extends StatelessWidget {
-  const HomeBigBannerContainer({
+class BigBannerContainer extends StatelessWidget {
+  const BigBannerContainer({
     super.key,
     required this.useShadow,
     required this.bgColor,
@@ -18,6 +18,7 @@ class HomeBigBannerContainer extends StatelessWidget {
 
     return Container(
       height: size.height * .16,
+      width: size.width,
       decoration: BoxDecoration(
         color: bgColor,
         borderRadius: .circular(20),
